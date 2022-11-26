@@ -1,5 +1,5 @@
 <template>
-  首页
+  所有书籍
   <BookCard>
     <template #bookcover></template>
     <template #bookname>3412</template>
@@ -10,7 +10,7 @@
 import BookCard from "../components/BookCard.vue";
 
 export default {
-  name: "HomeView",
+  name: "BooksView",
   components: {
     BookCard,
   },

@@ -21,6 +21,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">全部书籍</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">购物车</a>
+          </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
