@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="#">网上书店</a>
+      <router-link class="navbar-brand" :to="{name: 'home'}">网上书店</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,21 +16,21 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">主页</a>
+            <router-link class="nav-link active" aria-current="page" :to="{name: 'home'}">主页</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">全部书籍</a>
+            <router-link class="nav-link" :to="{name: 'books'}">全部书籍</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">购物车</a>
+            <router-link class="nav-link" :to="{name: 'shoppingcart'}">购物车</router-link>
           </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">登录</a>
+            <router-link class="nav-link" :to="{name: 'login'}">登录</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">注册</a>
+            <router-link class="nav-link" :to="{name: 'register'}">注册</router-link>
           </li>
         </ul>
       </div>
