@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
     <div class="card h-100">
       <img
         src="http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg"
@@ -14,6 +15,7 @@
         <a href="#" class="btn btn-primary btn-sm">加入购物车</a>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -23,7 +25,4 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  margin-top: 20px;
-}
 </style>
