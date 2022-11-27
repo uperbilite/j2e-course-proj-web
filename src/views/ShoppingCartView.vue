@@ -1,5 +1,5 @@
 <template>
-  <div v-for="book in shoppingCartBooks.books" :key="book.id">
+  <div v-for="book in books" :key="book.id">
     <ShoppingCartBook @deleteItem="deleteItem" :book="book"></ShoppingCartBook>
   </div>
   <nav class="navbar fixed-bottom navbar-light bg-light">
@@ -11,9 +11,9 @@
 
 <script>
 import ShoppingCartBook from "../components/ShoppingCartBook.vue";
-import { reactive } from "vue";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 
 export default {
   name: "ShoppingCartView",
@@ -22,58 +22,19 @@ export default {
   },
   setup() {
     const route = useRoute();
+    const store = useStore();
     const userId = route.params.userId;
     console.log(userId);
-    const shoppingCartBooks = reactive({
-      count: 4,
-      books: [
-        {
-          id: 100,
-          name: "mybook",
-          cover:
-            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
-          price: 200,
-          description: "this is a book",
-        },
-        {
-          id: 200,
-          name: "mybook1",
-          cover:
-            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
-          price: 200,
-          description: "this is a book",
-        },
-        {
-          id: 300,
-          name: "mybook2",
-          cover:
-            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
-          price: 200,
-          description: "this is a book",
-        },
-        {
-          id: 400,
-          name: "mybook3",
-          cover:
-            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
-          price: 200,
-          description: "this is a book",
-        },
-      ],
-    });
 
     const deleteItem = (book) => {
-      shoppingCartBooks.books = shoppingCartBooks.books.filter(
-        (b) => b !== book
-      );
+      store.dispatch("books/delBook", book.id);
     };
 
-    const totalPrice = computed(() => {
-      return shoppingCartBooks.books.reduce((acc, cur) => acc + cur.price, 0);
-    });
+    const books = computed(() => store.getters["books/books"]);
+    const totalPrice = computed(() => store.getters["books/totalPrice"]);
 
     return {
-      shoppingCartBooks,
+      books,
       deleteItem,
       totalPrice,
     };

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="card h-100">
-      <img :src="book.cover" class="card-img-top" alt="" />
+      <img class="card-img-top" :src="book.cover" alt="" />
       <div class="card-body">
         <h5 class="card-title">{{ book.name }}</h5>
         <p class="card-text">
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
+
 export default {
   name: "BookCard",
   props: {
@@ -24,9 +26,11 @@ export default {
       required: true,
     },
   },
-  setup(props, context) {
+  setup(props) {
+    const store = useStore();
+
     const addToCart = () => {
-      context.emit("addToCart", props.book);
+      store.dispatch("books/addBook", props.book);
     };
 
     return {

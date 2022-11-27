@@ -3,7 +3,7 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div v-for="book in books.books" :key="book.id">
         <div class="col">
-          <BookCard @addToCart="addToCart" :book="book"></BookCard>
+          <BookCard :book="book"></BookCard>
         </div>
       </div>
     </div>
@@ -58,14 +58,8 @@ export default {
       ],
     });
 
-    const addToCart = (book) => {
-      books.books.push(book);
-      console.log("add");
-    };
-
     return {
       books,
-      addToCart,
     };
   },
 };
