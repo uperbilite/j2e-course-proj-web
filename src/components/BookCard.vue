@@ -26,7 +26,7 @@ export default {
   },
   setup(props, context) {
     const addToCart = () => {
-      context.emit("addToCart");
+      context.emit("addToCart", props.book);
     };
 
     return {

@@ -58,7 +58,8 @@ export default {
       ],
     });
 
-    const addToCart = () => {
+    const addToCart = (book) => {
+      books.books.push(book);
       console.log("add");
     };
 
