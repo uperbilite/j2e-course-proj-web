@@ -4,7 +4,7 @@
   </div>
   <nav class="navbar fixed-bottom navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="#">合计：</a>
+      <a class="navbar-brand" href="#">合计：{{ totalPrice }}</a>
     </div>
   </nav>
 </template>
@@ -12,6 +12,7 @@
 <script>
 import ShoppingCartBook from "../components/ShoppingCartBook.vue";
 import { reactive } from "vue";
+import { computed } from "vue";
 
 export default {
   name: "ShoppingCartView",
@@ -61,9 +62,14 @@ export default {
       console.log("deleteItem");
     };
 
+    const totalPrice = computed(() => {
+      return shoppingCartBooks.books.reduce((acc, cur) => acc + cur.price, 0);
+    });
+
     return {
       shoppingCartBooks,
       deleteItem,
+      totalPrice,
     };
   },
 };
