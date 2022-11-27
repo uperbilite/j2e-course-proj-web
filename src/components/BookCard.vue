@@ -2,15 +2,14 @@
   <div class="container">
     <div class="card h-100">
       <img
-        src="http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg"
+        :src="book.cover"
         class="card-img-top"
         alt=""
       />
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title">{{ book.name }}</h5>
         <p class="card-text">
-          This is a longer card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
+          {{ book.description }}
         </p>
         <a href="#" class="btn btn-primary btn-sm">加入购物车</a>
       </div>
@@ -21,8 +20,13 @@
 <script>
 export default {
   name: "BookCard",
+  props: {
+    book: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
