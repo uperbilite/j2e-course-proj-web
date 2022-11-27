@@ -1,18 +1,28 @@
 <template>
-  购物车
-  <BookCard>
-    <template #bookcover></template>
-    <template #bookname>3412</template>
-  </BookCard>
+  <ShoppingCartItem></ShoppingCartItem>
+  <ShoppingCartItem></ShoppingCartItem>
+  <ShoppingCartItem></ShoppingCartItem>
+  <ShoppingCartItem></ShoppingCartItem>
+  <ShoppingCartItem></ShoppingCartItem>
+  <ShoppingCartItem></ShoppingCartItem>
+  <ShoppingCartItem></ShoppingCartItem>
+  <ShoppingCartItem></ShoppingCartItem>
+  <ShoppingCartItem></ShoppingCartItem>
+  <ShoppingCartItem></ShoppingCartItem>
+  <nav class="navbar sticky-bottom navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">合计：</a>
+    </div>
+  </nav>
 </template>
 
 <script>
-import BookCard from "../components/BookCard.vue";
+import ShoppingCartItem from "../components/ShoppingCartItem.vue";
 
 export default {
   name: "ShoppingCartView",
   components: {
-    BookCard,
+    ShoppingCartItem,
   },
 };
 </script>

@@ -1,18 +1,14 @@
 <template>
-  首页
-  <BookCard>
-    <template #bookcover></template>
-    <template #bookname>3412</template>
-  </BookCard>
+  <BaseCard>hello</BaseCard>
 </template>
 
 <script>
-import BookCard from "../components/BookCard.vue";
+import BaseCard from "../components/BaseCard.vue";
 
 export default {
   name: "HomeView",
   components: {
-    BookCard,
+    BaseCard,
   },
 };
 </script>
