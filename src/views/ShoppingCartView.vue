@@ -22,7 +22,8 @@ export default {
   },
   setup() {
     const route = useRoute();
-    console.log(route.params.userId);
+    const userId = route.params.userId;
+    console.log(userId);
     const shoppingCartBooks = reactive({
       count: 4,
       books: [
