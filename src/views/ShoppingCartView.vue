@@ -1,16 +1,8 @@
 <template>
-  <ShoppingCartItem @deleteItem="deleteItem" :book="book"></ShoppingCartItem>
-  <ShoppingCartItem :book="book"></ShoppingCartItem>
-  <ShoppingCartItem :book="book"></ShoppingCartItem>
-  <ShoppingCartItem :book="book"></ShoppingCartItem>
-  <ShoppingCartItem :book="book"></ShoppingCartItem>
-  <ShoppingCartItem :book="book"></ShoppingCartItem>
-  <ShoppingCartItem :book="book"></ShoppingCartItem>
-  <ShoppingCartItem :book="book"></ShoppingCartItem>
-  <ShoppingCartItem :book="book"></ShoppingCartItem>
-  <ShoppingCartItem :book="book"></ShoppingCartItem>
-
-  <nav class="navbar sticky-bottom navbar-light bg-light">
+  <div v-for="book in shoppingCartBooks.books" :key="book.id">
+    <ShoppingCartBook @deleteItem="deleteItem" :book="book"></ShoppingCartBook>
+  </div>
+  <nav class="navbar fixed-bottom navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="#">合计：</a>
     </div>
@@ -18,22 +10,51 @@
 </template>
 
 <script>
-import ShoppingCartItem from "../components/ShoppingCartItem.vue";
+import ShoppingCartBook from "../components/ShoppingCartBook.vue";
 import { reactive } from "vue";
 
 export default {
   name: "ShoppingCartView",
   components: {
-    ShoppingCartItem,
+    ShoppingCartBook,
   },
   setup() {
-    const book = reactive({
-      id: 100,
-      name: "mybook",
-      cover:
-        "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
-      price: 200,
-      description: "this is a book",
+    const shoppingCartBooks = reactive({
+      count: 4,
+      books: [
+        {
+          id: 100,
+          name: "mybook",
+          cover:
+            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
+          price: 200,
+          description: "this is a book",
+        },
+        {
+          id: 200,
+          name: "mybook1",
+          cover:
+            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
+          price: 200,
+          description: "this is a book",
+        },
+        {
+          id: 300,
+          name: "mybook2",
+          cover:
+            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
+          price: 200,
+          description: "this is a book",
+        },
+        {
+          id: 400,
+          name: "mybook3",
+          cover:
+            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
+          price: 200,
+          description: "this is a book",
+        },
+      ],
     });
 
     const deleteItem = () => {
@@ -41,7 +62,7 @@ export default {
     };
 
     return {
-      book,
+      shoppingCartBooks,
       deleteItem,
     };
   },
