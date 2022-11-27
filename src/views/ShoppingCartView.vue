@@ -13,6 +13,7 @@
 import ShoppingCartBook from "../components/ShoppingCartBook.vue";
 import { reactive } from "vue";
 import { computed } from "vue";
+import { useRoute } from "vue-router";
 
 export default {
   name: "ShoppingCartView",
@@ -20,6 +21,8 @@ export default {
     ShoppingCartBook,
   },
   setup() {
+    const route = useRoute();
+    console.log(route.params.userId);
     const shoppingCartBooks = reactive({
       count: 4,
       books: [
@@ -59,7 +62,9 @@ export default {
     });
 
     const deleteItem = (book) => {
-      shoppingCartBooks.books = shoppingCartBooks.books.filter((b) => b !== book);
+      shoppingCartBooks.books = shoppingCartBooks.books.filter(
+        (b) => b !== book
+      );
     };
 
     const totalPrice = computed(() => {

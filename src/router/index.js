@@ -18,7 +18,7 @@ const routes = [
     component: BooksView,
   },
   {
-    path: "/shoppingcart",
+    path: "/shoppingcart/:userId",
     name: "shoppingcart",
     component: ShoppingCartView,
   },

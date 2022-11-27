@@ -31,7 +31,9 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'shoppingcart' }"
+            <router-link
+              class="nav-link"
+              :to="{ name: 'shoppingcart', params: { userId: 3 } }"
               >购物车</router-link
             >
           </li>
