@@ -35,7 +35,7 @@ export default {
   },
   setup(props, context) {
     const deleteItem = () => {
-      context.emit("deleteItem");
+      context.emit("deleteItem", props.book);
     };
 
     return {

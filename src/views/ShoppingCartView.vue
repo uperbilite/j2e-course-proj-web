@@ -58,8 +58,8 @@ export default {
       ],
     });
 
-    const deleteItem = () => {
-      console.log("deleteItem");
+    const deleteItem = (book) => {
+      shoppingCartBooks.books = shoppingCartBooks.books.filter((b) => b !== book);
     };
 
     const totalPrice = computed(() => {
