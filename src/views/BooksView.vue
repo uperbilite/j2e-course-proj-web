@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div v-for="book in books.books" :key="book.id">
+      <div v-for="book in books" :key="book.id">
         <div class="col">
           <BookCard :book="book"></BookCard>
         </div>
@@ -12,7 +12,8 @@
 
 <script>
 import BookCard from "../components/BookCard.vue";
-import { reactive } from "vue";
+import { ref } from "vue";
+import $ from "jquery";
 
 export default {
   name: "BooksView",
@@ -20,42 +21,23 @@ export default {
     BookCard,
   },
   setup() {
-    const books = reactive({
-      count: 4,
-      books: [
-        {
-          id: 100,
-          name: "mybook",
-          cover:
-            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
-          price: 200,
-          description: "this is a book",
-        },
-        {
-          id: 200,
-          name: "mybook1",
-          cover:
-            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
-          price: 200,
-          description: "this is a book",
-        },
-        {
-          id: 300,
-          name: "mybook2",
-          cover:
-            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
-          price: 200,
-          description: "this is a book",
-        },
-        {
-          id: 400,
-          name: "mybook3",
-          cover:
-            "http://www.bingguner.com/upimg/allimg/191210/19-191210103310293.jpg",
-          price: 200,
-          description: "this is a book",
-        },
-      ],
+    let books = ref([]);
+
+    //$.ajax({
+    //  url: "https://app165.acapp.acwing.com.cn/myspace/userlist/",
+    //  type: "GET",
+    //  success(resp) {
+    //    books.value = resp;
+    //  }
+    //});
+
+    $.ajax({
+      url: "http://localhost:8081/books",
+      type: "GET",
+      success(resp) {
+        books.value = resp;
+        console.log(resp);
+      },
     });
 
     return {
