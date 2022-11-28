@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import books from "./books";
+import user from "./user";
 
 export default createStore({
   state: {},
@@ -8,5 +9,6 @@ export default createStore({
   actions: {},
   modules: {
     books,
+    user,
   },
 });

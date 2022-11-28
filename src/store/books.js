@@ -28,4 +28,5 @@ export default {
       context.commit("delBook", { bookId });
     },
   },
+  modules: {},
 };
