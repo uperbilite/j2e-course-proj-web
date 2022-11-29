@@ -46,7 +46,6 @@ export default {
     let error_message = ref("");
 
     const login = () => {
-      console.log(username.value, password.value);
       store.dispatch("user/login", {
         username: username.value,
         password: password.value,
