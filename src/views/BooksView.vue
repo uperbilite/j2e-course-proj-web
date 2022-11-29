@@ -23,20 +23,11 @@ export default {
   setup() {
     let books = ref([]);
 
-    //$.ajax({
-    //  url: "https://app165.acapp.acwing.com.cn/myspace/userlist/",
-    //  type: "GET",
-    //  success(resp) {
-    //    books.value = resp;
-    //  }
-    //});
-
     $.ajax({
       url: "http://localhost:8081/books",
       type: "GET",
       success(resp) {
         books.value = resp;
-        console.log(resp);
       },
     });
 
