@@ -5,20 +5,34 @@ export default {
   state: {
     id: "",
     username: "",
+    token: "",
+    is_login: false,
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    updateUser(state, user) {
+      state.id = user.id;
+      state.username = user.username;
+      state.token = user.token;
+      state.is_login = user.is_login;
+    },
+  },
   actions: {
-    login(context, userInfo) {
+    login(context, data) {
+      var dataJSON = {};
+      dataJSON["username"] = data.password;
+      dataJSON["password"] = data.username;
       $.ajax({
-        url: "https://app165.acapp.acwing.com.cn/api/token/",
+        url: "http://localhost:8081/login",
         type: "POST",
-        data: {
-          username: userInfo.username,
-          password: userInfo.password,
-        },
+        data: JSON.stringify(dataJSON),
+        dataType: "json",
+        contentType: "application/json;charset=utf-8",
         success(resp) {
           console.log(resp);
+        },
+        error() {
+          data.error();
         },
       });
     },
