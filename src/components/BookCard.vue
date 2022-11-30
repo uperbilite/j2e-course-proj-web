@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import router from "@/router";
 import { useStore } from "vuex";
 
 export default {
@@ -30,7 +31,11 @@ export default {
     const store = useStore();
 
     const addToCart = () => {
-      store.dispatch("books/addBook", props.book);
+      if (!store.state.user.is_login) {
+        router.push({ name: "login" });
+      } else {
+        store.dispatch("books/addBook", props.book);
+      }
     };
 
     return {

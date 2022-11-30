@@ -43,6 +43,7 @@ import BaseCard from "../components/BaseCard.vue";
 import { ref } from "vue";
 import $ from "jquery";
 import { useStore } from "vuex";
+import router from "../router/index";
 
 export default {
   name: "RegisterView",
@@ -73,6 +74,7 @@ export default {
               password: password.value,
               success() {
                 console.log("register and login successfully");
+                router.push({ name: "home" });
               },
               error() {
                 error_message.value = "系统异常，请稍后重试";
