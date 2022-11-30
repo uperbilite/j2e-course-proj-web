@@ -73,8 +73,12 @@ export default {
               username: username.value,
               password: password.value,
               success() {
-                console.log("register and login successfully");
-                router.push({ name: "home" });
+                store.dispatch("user/getInfo", {
+                  success() {
+                    console.log("register and login successfully");
+                    router.push({ name: "home" });
+                  },
+                });
               },
               error() {
                 error_message.value = "系统异常，请稍后重试";
