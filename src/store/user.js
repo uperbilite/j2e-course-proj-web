@@ -3,7 +3,7 @@ import $ from "jquery";
 export default {
   namespaced: true,
   state: {
-    id: "",
+    id: 0,
     username: "",
     token: "",
     is_login: false,
@@ -19,7 +19,7 @@ export default {
       state.token = token;
     },
     logout(state) {
-      state.id = ""; 
+      state.id = 0, 
       state.username = "";
       state.token = "";
       state.is_login = "";

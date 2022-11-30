@@ -12,7 +12,6 @@
 <script>
 import ShoppingCartBook from "../components/ShoppingCartBook.vue";
 import { computed } from "vue";
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 
 export default {
@@ -21,10 +20,7 @@ export default {
     ShoppingCartBook,
   },
   setup() {
-    const route = useRoute();
     const store = useStore();
-    const userId = route.params.userId;
-    console.log(userId);
 
     const deleteItem = (book) => {
       store.dispatch("books/delBook", book.id);
