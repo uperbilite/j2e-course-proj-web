@@ -50,10 +50,10 @@ export default {
         username: username.value,
         password: password.value,
         success() {
-          console.log("success");
+          console.log("successfully login");
         },
         error() {
-          console.log("failed");
+          console.log("login failed");
         },
       });
     };

@@ -19,14 +19,13 @@ export default {
   },
   actions: {
     login(context, data) {
-      var dataJSON = {};
-      dataJSON["username"] = data.password;
-      dataJSON["password"] = data.username;
       $.ajax({
         url: "http://localhost:8081/login",
         type: "POST",
-        data: JSON.stringify(dataJSON),
-        dataType: "json",
+        data: JSON.stringify({
+          username: data.username,
+          password: data.password,
+        }),
         contentType: "application/json;charset=utf-8",
         success(resp) {
           const token = resp.token;
