@@ -52,8 +52,12 @@ export default {
         username: username.value,
         password: password.value,
         success() {
-          console.log("login successfully");
-          router.push({name: "home"});
+          store.dispatch("user/getInfo", {
+            success() {
+              console.log("login successfully");
+              router.push({ name: "home" });
+            },
+          });
         },
         error() {
           error_message.value = "用户名或密码错误";

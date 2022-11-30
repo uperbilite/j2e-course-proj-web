@@ -13,8 +13,10 @@ export default {
     updateUser(state, user) {
       state.id = user.id;
       state.username = user.username;
-      state.token = user.token;
       state.is_login = user.is_login;
+    },
+    updateToken(state, token) {
+      state.token = token;
     },
   },
   actions: {
@@ -28,22 +30,35 @@ export default {
         }),
         contentType: "application/json;charset=utf-8",
         success(resp) {
-          const token = resp.token;
-          $.ajax({
-            url: "http://localhost:8081/info",
-            type: "GET",
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-            success(resp) {
-              context.commit("updateUser", {
-                ...resp,
-                token: token,
-                is_login: true,
-              });
-              data.success();
-            },
-          });
+          if (resp.message === "success") {
+            context.commit("updateToken", resp.token);
+            data.success();
+          } else {
+            data.error();
+          }
+        },
+        error() {
+          data.error();
+        },
+      });
+    },
+    getInfo(context, data) {
+      $.ajax({
+        url: "http://localhost:8081/info",
+        type: "GET",
+        headers: {
+          Authorization: "Bearer " + context.state.token,
+        },
+        success(resp) {
+          if (resp.message === "success") {
+            context.commit("updateUser", {
+              ...resp,
+              is_login: true,
+            });
+            data.success();
+          } else {
+            data.error();
+          }
         },
         error() {
           data.error();
