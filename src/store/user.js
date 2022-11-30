@@ -29,7 +29,22 @@ export default {
         dataType: "json",
         contentType: "application/json;charset=utf-8",
         success(resp) {
-          console.log(resp);
+          const token = resp.token;
+          $.ajax({
+            url: "http://localhost:8081/info",
+            type: "GET",
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+            success(resp) {
+              context.commit("updateUser", {
+                ...resp,
+                token: token,
+                is_login: true,
+              });
+              data.success();
+            },
+          });
         },
         error() {
           data.error();
