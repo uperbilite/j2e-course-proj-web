@@ -7,6 +7,7 @@ export default {
     username: "",
     token: "",
     is_login: false,
+    is_pulling_info: true,
   },
   getters: {},
   mutations: {
@@ -19,11 +20,13 @@ export default {
       state.token = token;
     },
     logout(state) {
-      state.id = 0, 
-      state.username = "";
+      (state.id = 0), (state.username = "");
       state.token = "";
       state.is_login = "";
-    }
+    },
+    updateIsPullingInfo(state, is_pulling_info) {
+      state.is_pulling_info = is_pulling_info;
+    },
   },
   actions: {
     login(context, data) {
@@ -75,7 +78,7 @@ export default {
     logout(context) {
       localStorage.removeItem("jwt_token");
       context.commit("logout");
-    }
+    },
   },
   modules: {},
 };
