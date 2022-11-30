@@ -18,6 +18,12 @@ export default {
     updateToken(state, token) {
       state.token = token;
     },
+    logout(state) {
+      state.id = ""; 
+      state.username = "";
+      state.token = "";
+      state.is_login = "";
+    }
   },
   actions: {
     login(context, data) {
@@ -65,6 +71,9 @@ export default {
         },
       });
     },
+    logout(context) {
+      context.commit("logout");
+    }
   },
   modules: {},
 };
