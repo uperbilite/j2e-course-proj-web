@@ -1,5 +1,5 @@
 <template>
-  <BaseCard>
+  <BaseCard v-if="!$store.state.user.is_pulling_info">
     <div class="row justify-content-md-center">
       <div class="col-3">
         <form @submit.prevent="login">
@@ -52,9 +52,14 @@ export default {
       store.dispatch("user/getInfo", {
         success() {
           router.push({ name: "home" });
+          store.commit("user/updateIsPullingInfo", false);
         },
-        error() {},
+        error() {
+          store.commit("user/updateIsPullingInfo", false);
+        },
       });
+    } else {
+      store.commit("user/updateIsPullingInfo", false);
     }
 
     const login = () => {

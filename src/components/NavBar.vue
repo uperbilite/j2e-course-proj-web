@@ -38,7 +38,15 @@
             >
           </li>
         </ul>
-        <ul class="navbar-nav" v-if="!$store.state.user.is_login">
+        <ul class="navbar-nav" v-if="$store.state.user.is_login">
+          <li class="nav-item">
+            <a class="nav-link" href="#">{{ $store.state.user.username }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="cursor: pointer" @click="logout">退出</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav" v-else-if="!$store.state.user.is_pulling_info">
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'login' }"
               >登录</router-link
@@ -48,14 +56,6 @@
             <router-link class="nav-link" :to="{ name: 'register' }"
               >注册</router-link
             >
-          </li>
-        </ul>
-        <ul class="navbar-nav" v-else>
-          <li class="nav-item">
-            <a class="nav-link" href="#">{{ $store.state.user.username }}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" style="cursor: pointer" @click="logout">退出</a>
           </li>
         </ul>
       </div>
@@ -70,9 +70,11 @@ export default {
   name: "NavBar",
   setup() {
     const store = useStore();
+
     const logout = () => {
       store.dispatch("user/logout");
     };
+
     return {
       logout,
     };

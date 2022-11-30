@@ -13,7 +13,7 @@ const routes = [
     name: "home",
     component: HomeView,
     meta: {
-      requireAuth: false,
+      requireAuth: true,
     },
   },
   {
@@ -21,7 +21,7 @@ const routes = [
     name: "books",
     component: BooksView,
     meta: {
-      requireAuth: false,
+      requireAuth: true,
     },
   },
   {
