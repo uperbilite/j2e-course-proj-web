@@ -31,7 +31,7 @@
             />
           </div>
           <div class="error-message">{{ error_message }}</div>
-          <button type="submit" class="btn btn-primary">登录</button>
+          <button type="submit" class="btn btn-primary">注册</button>
         </form>
       </div>
     </div>
@@ -42,6 +42,7 @@
 import BaseCard from "../components/BaseCard.vue";
 import { ref } from "vue";
 import $ from "jquery";
+import { useStore } from "vuex";
 
 export default {
   name: "RegisterView",
@@ -49,14 +50,13 @@ export default {
     BaseCard,
   },
   setup() {
+    const store = useStore();
     let username = ref("");
     let password = ref("");
     let confirmed_password = ref("");
     let error_message = ref("");
 
     const register = () => {
-      error_message = ref("");
-
       $.ajax({
         url: "http://localhost:8081/register",
         type: "POST",
@@ -67,7 +67,20 @@ export default {
         }),
         contentType: "application/json;charset=utf-8",
         success(resp) {
-          console.log(resp);
+          if (resp.message === "success") {
+            store.dispatch("user/login", {
+              username: username.value,
+              password: password.value,
+              success() {
+                console.log("register and login successfully");
+              },
+              error() {
+                error_message.value = "系统异常，请稍后重试";
+              },
+            });
+          } else {
+            error_message.value = resp.message;
+          }
         },
       });
     };
