@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "ShoppingCartBook",
+  name: "CartBook",
   props: {
     book: {
       type: Object,

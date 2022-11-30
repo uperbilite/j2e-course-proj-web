@@ -1,6 +1,6 @@
 <template>
   <div v-for="book in books" :key="book.id">
-    <ShoppingCartBook @deleteItem="deleteItem" :book="book"></ShoppingCartBook>
+    <CartBook @deleteItem="deleteItem" :book="book"></CartBook>
   </div>
   <nav class="navbar fixed-bottom navbar-light bg-light">
     <div class="container">
@@ -10,14 +10,14 @@
 </template>
 
 <script>
-import ShoppingCartBook from "../components/ShoppingCartBook.vue";
+import CartBook from "../components/CartBook.vue";
 import { computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
-  name: "ShoppingCartView",
+  name: "CartView",
   components: {
-    ShoppingCartBook,
+    CartBook,
   },
   setup() {
     const store = useStore();

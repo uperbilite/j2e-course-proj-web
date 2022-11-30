@@ -33,7 +33,7 @@
           <li class="nav-item">
             <router-link
               class="nav-link"
-              :to="{ name: 'shoppingcart', params: { userId: $store.state.user.id } }"
+              :to="{ name: 'cart', params: { userId: $store.state.user.id } }"
               >购物车</router-link
             >
           </li>

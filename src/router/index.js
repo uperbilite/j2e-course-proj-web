@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import BooksView from "../views/BooksView.vue";
-import ShoppingCartView from "../views/ShoppingCartView.vue";
+import CartView from "../views/CartView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
@@ -25,9 +25,9 @@ const routes = [
     },
   },
   {
-    path: "/shoppingcart/:userId",
-    name: "shoppingcart",
-    component: ShoppingCartView,
+    path: "/cart/:userId",
+    name: "cart",
+    component: CartView,
     meta: {
       requireAuth: true,
     },
