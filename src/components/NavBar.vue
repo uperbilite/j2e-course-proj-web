@@ -71,7 +71,7 @@ export default {
   setup() {
     const store = useStore();
     const logout = () => {
-      store.commit("user/logout");
+      store.dispatch("user/logout");
     };
     return {
       logout,

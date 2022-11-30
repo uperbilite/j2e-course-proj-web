@@ -46,6 +46,17 @@ export default {
     let password = ref("");
     let error_message = ref("");
 
+    const jwt_token = localStorage.getItem("jwt_token");
+    if (jwt_token) {
+      store.commit("user/updateToken", jwt_token);
+      store.dispatch("user/getInfo", {
+        success() {
+          router.push({ name: "home" });
+        },
+        error() {},
+      });
+    }
+
     const login = () => {
       error_message.value = "";
       store.dispatch("user/login", {
