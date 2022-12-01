@@ -1,5 +1,5 @@
 <template>
-  <BaseCard v-if="!$store.state.user.is_pulling_info">
+  <BaseCard v-if="!$store.state.user.isPullingInfo">
     <div class="row justify-content-md-center">
       <div class="col-3">
         <form @submit.prevent="login">
@@ -21,7 +21,7 @@
               id="password"
             />
           </div>
-          <div class="error-message">{{ error_message }}</div>
+          <div class="error-message">{{ errorMessage }}</div>
           <button type="submit" class="btn btn-primary">登录</button>
         </form>
       </div>
@@ -44,7 +44,7 @@ export default {
     const store = useStore();
     let username = ref("");
     let password = ref("");
-    let error_message = ref("");
+    let errorMessage = ref("");
 
     const jwt_token = localStorage.getItem("jwt_token");
     if (jwt_token) {
@@ -63,7 +63,7 @@ export default {
     }
 
     const login = () => {
-      error_message.value = "";
+      errorMessage.value = "";
       store.dispatch("user/login", {
         username: username.value,
         password: password.value,
@@ -77,7 +77,7 @@ export default {
           });
         },
         error() {
-          error_message.value = "用户名或密码错误";
+          errorMessage.value = "用户名或密码错误";
         },
       });
     };
@@ -85,7 +85,7 @@ export default {
     return {
       username,
       password,
-      error_message,
+      errorMessage,
       login,
     };
   },

@@ -22,15 +22,15 @@
             />
           </div>
           <div class="mb-3">
-            <label for="confirmed_password" class="form-label">确认密码</label>
+            <label for="confirmedPassword" class="form-label">确认密码</label>
             <input
-              v-model="confirmed_password"
+              v-model="confirmedPassword"
               type="password"
               class="form-control"
-              id="confirmed_password"
+              id="confirmedPassword"
             />
           </div>
-          <div class="error-message">{{ error_message }}</div>
+          <div class="error-message">{{ errorMessage }}</div>
           <button type="submit" class="btn btn-primary">注册</button>
         </form>
       </div>
@@ -52,8 +52,8 @@ export default {
   setup() {
     let username = ref("");
     let password = ref("");
-    let confirmed_password = ref("");
-    let error_message = ref("");
+    let confirmedPassword = ref("");
+    let errorMessage = ref("");
 
     const register = () => {
       $.ajax({
@@ -62,17 +62,17 @@ export default {
         data: JSON.stringify({
           username: username.value,
           password: password.value,
-          confirmedPassword: confirmed_password.value,
+          confirmedPassword: confirmedPassword.value,
         }),
         contentType: "application/json;charset=utf-8",
         success(resp) {
           if (resp.message === "success") {
             username.value = "";
             password.value = "";
-            confirmed_password.value = "";
+            confirmedPassword.value = "";
             router.push({ name: "login" });
           } else {
-            error_message.value = resp.message;
+            errorMessage.value = resp.message;
           }
         },
       });
@@ -81,8 +81,8 @@ export default {
     return {
       username,
       password,
-      confirmed_password,
-      error_message,
+      confirmedPassword,
+      errorMessage,
       register,
     };
   },

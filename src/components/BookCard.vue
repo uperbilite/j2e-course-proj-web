@@ -31,7 +31,7 @@ export default {
     const store = useStore();
 
     const addToCart = () => {
-      if (!store.state.user.is_login) {
+      if (!store.state.user.isLogin) {
         router.push({ name: "login" });
       } else {
         store.dispatch("books/addBook", props.book);

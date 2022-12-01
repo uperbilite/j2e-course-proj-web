@@ -8,8 +8,8 @@ export default {
     id: 0,
     username: "",
     token: "",
-    is_login: false,
-    is_pulling_info: true,
+    isLogin: false,
+    isPullingInfo: true,
   },
   getters: {
     id: (state) => state.id,
@@ -18,20 +18,20 @@ export default {
     updateUser(state, user) {
       state.id = user.id;
       state.username = user.username;
-      state.is_login = user.is_login;
+      state.isLogin = user.isLogin;
     },
     updateToken(state, token) {
       state.token = token;
     },
-    updateIsPullingInfo(state, is_pulling_info) {
-      state.is_pulling_info = is_pulling_info;
+    updateIsPullingInfo(state, isPullingInfo) {
+      state.isPullingInfo = isPullingInfo;
     },
     logout(state) {
       state.id = 0;
       state.username = "";
       state.token = "";
-      state.is_login = false;
-      state.is_pulling_info = true;
+      state.isLogin = false;
+      state.isPullingInfo = true;
     },
   },
   actions: {
@@ -69,7 +69,7 @@ export default {
           if (resp.message === "success") {
             context.commit("updateUser", {
               ...resp,
-              is_login: true,
+              isLogin: true,
             });
             $.ajax({
               url: "http://localhost:8081/cart/" + store.getters["user/id"],

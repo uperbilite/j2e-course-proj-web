@@ -38,7 +38,7 @@
             >
           </li>
         </ul>
-        <ul class="navbar-nav" v-if="$store.state.user.is_login">
+        <ul class="navbar-nav" v-if="$store.state.user.isLogin">
           <li class="nav-item">
             <a class="nav-link" href="#">{{ $store.state.user.username }}</a>
           </li>
@@ -46,7 +46,7 @@
             <a class="nav-link" style="cursor: pointer" @click="logout">退出</a>
           </li>
         </ul>
-        <ul class="navbar-nav" v-else-if="!$store.state.user.is_pulling_info">
+        <ul class="navbar-nav" v-else-if="!$store.state.user.isPullingInfo">
           <li class="nav-item">
             <router-link class="nav-link" :to="{ name: 'login' }"
               >登录</router-link
