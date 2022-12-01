@@ -45,13 +45,9 @@ export default {
         }),
         contentType: "application/json;charset=utf-8",
         success(resp) {
-          if (resp.message === "success") {
-            localStorage.setItem("jwt_token", resp.token);
-            context.commit("updateToken", resp.token);
-            data.success();
-          } else {
-            data.error();
-          }
+          localStorage.setItem("jwt_token", resp.token);
+          context.commit("updateToken", resp.token);
+          data.success();
         },
         error() {
           data.error();
@@ -66,26 +62,22 @@ export default {
           Authorization: "Bearer " + context.state.token,
         },
         success(resp) {
-          if (resp.message === "success") {
-            context.commit("updateUser", {
-              ...resp,
-              isLogin: true,
-            });
-            $.ajax({
-              url: "http://localhost:8081/cart/" + store.getters["user/id"],
-              type: "GET",
-              success(resp) {
-                store.commit("books/updateBooks", resp);
-                console.log(store.state.books);
-              },
-              error() {
-                data.error();
-              },
-            });
-            data.success();
-          } else {
-            data.error();
-          }
+          context.commit("updateUser", {
+            ...resp,
+            isLogin: true,
+          });
+          $.ajax({
+            url: "http://localhost:8081/cart/" + store.getters["user/id"],
+            type: "GET",
+            success(resp) {
+              store.commit("books/updateBooks", resp);
+              console.log(store.state.books);
+            },
+            error() {
+              data.error();
+            },
+          });
+          data.success();
         },
         error() {
           data.error();
