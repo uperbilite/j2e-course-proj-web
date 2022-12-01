@@ -1,5 +1,6 @@
 import router from "@/router";
 import $ from "jquery";
+import store from ".";
 
 export default {
   namespaced: true,
@@ -10,7 +11,9 @@ export default {
     is_login: false,
     is_pulling_info: true,
   },
-  getters: {},
+  getters: {
+    id: (state) => state.id,
+  },
   mutations: {
     updateUser(state, user) {
       state.id = user.id;
@@ -20,15 +23,15 @@ export default {
     updateToken(state, token) {
       state.token = token;
     },
+    updateIsPullingInfo(state, is_pulling_info) {
+      state.is_pulling_info = is_pulling_info;
+    },
     logout(state) {
       state.id = 0;
       state.username = "";
       state.token = "";
       state.is_login = false;
       state.is_pulling_info = true;
-    },
-    updateIsPullingInfo(state, is_pulling_info) {
-      state.is_pulling_info = is_pulling_info;
     },
   },
   actions: {
@@ -67,6 +70,14 @@ export default {
             context.commit("updateUser", {
               ...resp,
               is_login: true,
+            });
+            $.ajax({
+              url: "http://localhost:8081/cart/" + store.getters["user/id"],
+              type: "GET",
+              success(resp) {
+                store.commit("books/updateBooks", resp);
+                console.log(store.state.books);
+              },
             });
             data.success();
           } else {

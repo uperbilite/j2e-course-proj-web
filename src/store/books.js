@@ -9,6 +9,9 @@ export default {
     count: (state) => state.books.length,
   },
   mutations: {
+    updateBooks(state, books) {
+      state.books = books;
+    },
     addBook(state, { book }) {
       state.books.push(book);
       console.log("vuex/books", state.books);
