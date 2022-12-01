@@ -67,6 +67,9 @@ export default {
         contentType: "application/json;charset=utf-8",
         success(resp) {
           if (resp.message === "success") {
+            username.value = "";
+            password.value = "";
+            confirmed_password.value = "";
             router.push({ name: "login" });
           } else {
             error_message.value = resp.message;

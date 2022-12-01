@@ -70,7 +70,9 @@ export default {
         success() {
           store.dispatch("user/getInfo", {
             success() {
-              router.push({ name: "home" });
+              username.value = "";
+              password.value = "";
+              router.push({ name: "login" });
             },
           });
         },

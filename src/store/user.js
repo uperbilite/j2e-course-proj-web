@@ -1,3 +1,4 @@
+import router from "@/router";
 import $ from "jquery";
 
 export default {
@@ -20,9 +21,11 @@ export default {
       state.token = token;
     },
     logout(state) {
-      (state.id = 0), (state.username = "");
+      state.id = 0;
+      state.username = "";
       state.token = "";
-      state.is_login = "";
+      state.is_login = false;
+      state.is_pulling_info = true;
     },
     updateIsPullingInfo(state, is_pulling_info) {
       state.is_pulling_info = is_pulling_info;
@@ -78,6 +81,7 @@ export default {
     logout(context) {
       localStorage.removeItem("jwt_token");
       context.commit("logout");
+      router.push({ name: "login" });
     },
   },
   modules: {},
