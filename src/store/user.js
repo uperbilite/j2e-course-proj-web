@@ -78,6 +78,9 @@ export default {
                 store.commit("books/updateBooks", resp);
                 console.log(store.state.books);
               },
+              error() {
+                data.error();
+              },
             });
             data.success();
           } else {
