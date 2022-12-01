@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import router from "@/router";
 import { useStore } from "vuex";
+import $ from "jquery";
 
 export default {
   name: "BookCard",
@@ -31,11 +31,21 @@ export default {
     const store = useStore();
 
     const addToCart = () => {
-      if (!store.state.user.isLogin) {
-        router.push({ name: "login" });
-      } else {
-        store.dispatch("books/addBook", props.book);
-      }
+      $.ajax({
+        url: "http://localhost:8081/cart/" + store.state.user.id,
+        type: "POST",
+        data: JSON.stringify({
+          bookId: props.book.id,
+        }),
+        contentType: "application/json;charset=utf-8",
+        success(resp) {
+          if (resp.message === "success") {
+            store.dispatch("books/addBook", props.book);
+          } else {
+            alert(resp.message);
+          }
+        },
+      });
     };
 
     return {
