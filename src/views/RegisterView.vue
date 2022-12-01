@@ -42,7 +42,6 @@
 import BaseCard from "../components/BaseCard.vue";
 import { ref } from "vue";
 import $ from "jquery";
-import { useStore } from "vuex";
 import router from "../router/index";
 
 export default {
@@ -51,7 +50,6 @@ export default {
     BaseCard,
   },
   setup() {
-    const store = useStore();
     let username = ref("");
     let password = ref("");
     let confirmed_password = ref("");
@@ -69,21 +67,7 @@ export default {
         contentType: "application/json;charset=utf-8",
         success(resp) {
           if (resp.message === "success") {
-            store.dispatch("user/login", {
-              username: username.value,
-              password: password.value,
-              success() {
-                store.dispatch("user/getInfo", {
-                  success() {
-                    console.log("register and login successfully");
-                    router.push({ name: "home" });
-                  },
-                });
-              },
-              error() {
-                error_message.value = "系统异常，请稍后重试";
-              },
-            });
+            router.push({ name: "login" });
           } else {
             error_message.value = resp.message;
           }

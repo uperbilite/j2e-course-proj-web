@@ -70,7 +70,6 @@ export default {
         success() {
           store.dispatch("user/getInfo", {
             success() {
-              console.log("login successfully");
               router.push({ name: "home" });
             },
           });
