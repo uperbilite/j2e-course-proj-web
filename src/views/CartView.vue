@@ -13,6 +13,7 @@
 import CartBook from "../components/CartBook.vue";
 import { computed } from "vue";
 import { useStore } from "vuex";
+import $ from "jquery";
 
 export default {
   name: "CartView",
@@ -23,7 +24,21 @@ export default {
     const store = useStore();
 
     const deleteItem = (book) => {
-      store.dispatch("books/delBook", book.id);
+      $.ajax({
+        url: "http://localhost:8081/cart/" + store.state.user.id,
+        type: "DELETE",
+        data: JSON.stringify({
+          bookId: book.id,
+        }),
+        contentType: "application/json;charset=utf-8",
+        success(resp) {
+          if (resp.message === "success") {
+            store.dispatch("books/delBook", book.id);
+          } else {
+            alert(resp.message);
+          }
+        },
+      });
     };
 
     const books = computed(() => store.getters["books/books"]);
