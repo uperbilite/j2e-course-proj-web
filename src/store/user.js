@@ -71,7 +71,6 @@ export default {
             type: "GET",
             success(resp) {
               store.commit("books/updateBooks", resp);
-              console.log(store.state.books);
             },
             error() {
               data.error();

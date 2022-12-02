@@ -14,7 +14,6 @@ export default {
     },
     addBook(state, { book }) {
       state.books.push(book);
-      console.log("vuex/books", state.books);
     },
     delBook(state, { bookId }) {
       const index = state.books.findIndex((item) => item.id === bookId);
