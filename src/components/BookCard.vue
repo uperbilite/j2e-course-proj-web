@@ -40,6 +40,7 @@ export default {
         contentType: "application/json;charset=utf-8",
         success(resp) {
           if (resp.message === "success") {
+            alert("添加成功");
             store.dispatch("books/addBook", props.book);
           } else {
             alert(resp.message);

@@ -11,7 +11,7 @@
           </div>
           <div class="col">
             <button
-              @click="deleteItem"
+              @click="delBook"
               type="button"
               class="btn btn-danger btn-sm"
             >
@@ -34,12 +34,12 @@ export default {
     },
   },
   setup(props, context) {
-    const deleteItem = () => {
-      context.emit("deleteItem", props.book);
+    const delBook = () => {
+      context.emit("delBook", props.book);
     };
 
     return {
-      deleteItem,
+      delBook,
     };
   },
 };

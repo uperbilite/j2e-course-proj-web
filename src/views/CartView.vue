@@ -1,6 +1,6 @@
 <template>
   <div v-for="book in books" :key="book.id">
-    <CartBook @deleteItem="deleteItem" :book="book"></CartBook>
+    <CartBook @delBook="delBook" :book="book"></CartBook>
   </div>
   <nav class="navbar fixed-bottom navbar-light bg-light">
     <div class="container">
@@ -23,7 +23,7 @@ export default {
   setup() {
     const store = useStore();
 
-    const deleteItem = (book) => {
+    const delBook = (book) => {
       $.ajax({
         url: "http://localhost:8081/cart/" + store.state.user.id,
         type: "DELETE",
@@ -46,7 +46,7 @@ export default {
 
     return {
       books,
-      deleteItem,
+      delBook,
       totalPrice,
     };
   },
