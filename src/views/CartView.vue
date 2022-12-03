@@ -4,7 +4,12 @@
   </div>
   <nav class="navbar fixed-bottom navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="#">合计：{{ totalPrice }}</a>
+      <a class="navbar-brand">合计：{{ totalPrice }}</a>
+      <div class="d-flex">
+        <button @click="settle" class="btn btn-outline-success" type="button">
+          结算
+        </button>
+      </div>
     </div>
   </nav>
 </template>
@@ -41,16 +46,34 @@ export default {
       });
     };
 
+    const settle = () => {
+      $.ajax({
+        url: "http://localhost:8081/settle/" + store.state.user.id,
+        type: "GET",
+        headers: {
+          Authorization: "Bearer " + store.state.user.token,
+        },
+        success(resp) {
+          console.log(resp);
+        },
+      });
+    };
+
     const books = computed(() => store.getters["books/books"]);
     const totalPrice = computed(() => store.getters["books/totalPrice"]);
 
     return {
       books,
-      delBook,
       totalPrice,
+      delBook,
+      settle,
     };
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+button {
+  float: left;
+}
+</style>
