@@ -31,7 +31,6 @@ export default {
       state.username = "";
       state.token = "";
       state.isLogin = false;
-      state.isPullingInfo = true;
     },
   },
   actions: {
