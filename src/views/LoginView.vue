@@ -72,7 +72,7 @@ export default {
             success() {
               username.value = "";
               password.value = "";
-              router.push({ name: "login" });
+              alert("登录成功");
             },
           });
         },

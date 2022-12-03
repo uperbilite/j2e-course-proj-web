@@ -25,7 +25,7 @@ const routes = [
     },
   },
   {
-    path: "/cart/:userId",
+    path: "/cart",
     name: "cart",
     component: CartView,
     meta: {

@@ -30,8 +30,11 @@ export default {
 
     const delItem = (item) => {
       $.ajax({
-        url: "http://localhost:8081/cart/" + store.state.user.id,
+        url: "http://localhost:8081/cart",
         type: "DELETE",
+        headers: {
+          Authorization: "Bearer " + store.state.user.token,
+        },
         data: JSON.stringify({
           bookId: item.id,
         }),

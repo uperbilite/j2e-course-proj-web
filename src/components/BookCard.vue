@@ -32,8 +32,11 @@ export default {
 
     const addToCart = () => {
       $.ajax({
-        url: "http://localhost:8081/cart/" + store.state.user.id,
+        url: "http://localhost:8081/cart",
         type: "POST",
+        headers: {
+          Authorization: "Bearer " + store.state.user.token,
+        },
         data: JSON.stringify({
           bookId: props.book.id,
         }),

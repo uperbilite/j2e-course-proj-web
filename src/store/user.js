@@ -66,8 +66,11 @@ export default {
             isLogin: true,
           });
           $.ajax({
-            url: "http://localhost:8081/cart/" + context.state.id,
+            url: "http://localhost:8081/cart",
             type: "GET",
+            headers: {
+              Authorization: "Bearer " + context.state.token,
+            },
             success(resp) {
               store.commit("cart/updateItems", resp);
             },
