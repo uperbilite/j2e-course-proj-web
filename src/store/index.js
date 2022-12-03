@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import books from "./books";
+import cart from "./cart";
 import user from "./user";
 
 export default createStore({
@@ -8,7 +8,7 @@ export default createStore({
   mutations: {},
   actions: {},
   modules: {
-    books,
+    cart,
     user,
   },
 });

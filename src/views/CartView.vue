@@ -1,6 +1,6 @@
 <template>
-  <div v-for="book in books" :key="book.id">
-    <CartBook @delBook="delBook" :book="book"></CartBook>
+  <div v-for="item in items" :key="item.id">
+    <CartItem @delItem="delItem" :item="item"></CartItem>
   </div>
   <nav class="navbar fixed-bottom navbar-light bg-light">
     <div class="container">
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CartBook from "../components/CartBook.vue";
+import CartItem from "../components/CartItem.vue";
 import { computed } from "vue";
 import { useStore } from "vuex";
 import $ from "jquery";
@@ -23,22 +23,22 @@ import $ from "jquery";
 export default {
   name: "CartView",
   components: {
-    CartBook,
+    CartItem,
   },
   setup() {
     const store = useStore();
 
-    const delBook = (book) => {
+    const delItem = (item) => {
       $.ajax({
         url: "http://localhost:8081/cart/" + store.state.user.id,
         type: "DELETE",
         data: JSON.stringify({
-          bookId: book.id,
+          bookId: item.id,
         }),
         contentType: "application/json;charset=utf-8",
         success(resp) {
           if (resp.message === "success") {
-            store.dispatch("books/delBook", book.id);
+            store.dispatch("cart/delItem", item.id);
           } else {
             alert(resp.message);
           }
@@ -55,7 +55,7 @@ export default {
         },
         success(resp) {
           if (resp.message === "success") {
-            store.commit("books/updateBooks", []);
+            store.commit("cart/updateItems", []);
             alert("购买成功");
           } else {
             alert(resp.message);
@@ -64,13 +64,13 @@ export default {
       });
     };
 
-    const books = computed(() => store.getters["books/books"]);
-    const totalPrice = computed(() => store.getters["books/totalPrice"]);
+    const items = computed(() => store.getters["cart/items"]);
+    const totalPrice = computed(() => store.getters["cart/totalPrice"]);
 
     return {
-      books,
+      items,
       totalPrice,
-      delBook,
+      delItem,
       checkout,
     };
   },

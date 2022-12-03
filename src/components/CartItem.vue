@@ -4,14 +4,14 @@
       <div class="card-body">
         <div class="row align-items-start">
           <div class="col">
-            <div class="bookname">书名：{{ book.name }}</div>
+            <div class="bookname">书名：{{ item.name }}</div>
           </div>
           <div class="col">
-            <div class="bookprice">价格: {{ book.price }}</div>
+            <div class="bookprice">价格: {{ item.price }}</div>
           </div>
           <div class="col">
             <button
-              @click="delBook"
+              @click="delItem"
               type="button"
               class="btn btn-danger btn-sm"
             >
@@ -26,20 +26,20 @@
 
 <script>
 export default {
-  name: "CartBook",
+  name: "CartItem",
   props: {
-    book: {
+    item: {
       type: Object,
       required: true,
     },
   },
   setup(props, context) {
-    const delBook = () => {
-      context.emit("delBook", props.book);
+    const delItem = () => {
+      context.emit("delItem", props.item);
     };
 
     return {
-      delBook,
+      delItem,
     };
   },
 };

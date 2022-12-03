@@ -41,7 +41,7 @@ export default {
         success(resp) {
           if (resp.message === "success") {
             alert("添加成功");
-            store.dispatch("books/addBook", props.book);
+            store.dispatch("cart/addItem", props.book);
           } else {
             alert(resp.message);
           }

@@ -69,7 +69,7 @@ export default {
             url: "http://localhost:8081/cart/" + store.getters["user/id"],
             type: "GET",
             success(resp) {
-              store.commit("books/updateBooks", resp);
+              store.commit("cart/updateItems", resp);
             },
             error() {
               data.error();
