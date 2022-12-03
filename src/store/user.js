@@ -66,7 +66,7 @@ export default {
             isLogin: true,
           });
           $.ajax({
-            url: "http://localhost:8081/cart/" + store.getters["user/id"],
+            url: "http://localhost:8081/cart/" + context.state.id,
             type: "GET",
             success(resp) {
               store.commit("cart/updateItems", resp);
