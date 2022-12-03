@@ -6,7 +6,7 @@
     <div class="container">
       <a class="navbar-brand">合计：{{ totalPrice }}</a>
       <div class="d-flex">
-        <button @click="settle" class="btn btn-outline-success" type="button">
+        <button @click="checkout" class="btn btn-outline-success" type="button">
           结算
         </button>
       </div>
@@ -46,15 +46,20 @@ export default {
       });
     };
 
-    const settle = () => {
+    const checkout = () => {
       $.ajax({
-        url: "http://localhost:8081/settle/" + store.state.user.id,
-        type: "GET",
+        url: "http://localhost:8081/checkout",
+        type: "POST",
         headers: {
           Authorization: "Bearer " + store.state.user.token,
         },
         success(resp) {
-          console.log(resp);
+          if (resp.message === "success") {
+            store.commit("books/updateBooks", []);
+            alert("购买成功");
+          } else {
+            alert(resp.message);
+          }
         },
       });
     };
@@ -66,7 +71,7 @@ export default {
       books,
       totalPrice,
       delBook,
-      settle,
+      checkout,
     };
   },
 };
