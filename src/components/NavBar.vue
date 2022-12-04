@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <router-link class="navbar-brand" :to="{ name: 'home' }"
-        >网上书店</router-link
+        >Page One</router-link
       >
       <button
         class="navbar-toggler"
