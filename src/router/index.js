@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import BooksView from "../views/BooksView.vue";
 import CartView from "../views/CartView.vue";
+import ChargeView from "../views/ChargeView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
@@ -28,6 +29,14 @@ const routes = [
     path: "/cart",
     name: "cart",
     component: CartView,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: "/charge",
+    name: "charge",
+    component: ChargeView,
     meta: {
       requireAuth: true,
     },

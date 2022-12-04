@@ -35,6 +35,11 @@
               >购物车</router-link
             >
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{ name: 'charge' }"
+              >充值</router-link
+            >
+          </li>
         </ul>
         <ul class="navbar-nav" v-if="$store.state.user.isLogin">
           <li class="nav-item">
