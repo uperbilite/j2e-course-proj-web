@@ -4,7 +4,7 @@
   </div>
   <nav class="navbar fixed-bottom navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand">合计：{{ totalPrice }}</a>
+      <a class="navbar-brand">合计：{{ totalPrice }}¥</a>
       <div class="d-flex">
         <button @click="checkout" class="btn btn-outline-success" type="button">
           结算

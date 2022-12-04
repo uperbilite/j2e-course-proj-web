@@ -2,12 +2,12 @@
   <div class="container">
     <div class="card">
       <div class="card-body">
-        <div class="row align-items-start">
+        <div class="row align-items-center">
           <div class="col">
-            <div class="bookname">书名：{{ item.name }}</div>
+            <div class="bookname">{{ item.name }}</div>
           </div>
           <div class="col">
-            <div class="bookprice">价格: {{ item.price }}</div>
+            <div class="bookprice">{{ item.price }}¥</div>
           </div>
           <div class="col">
             <button
@@ -51,5 +51,6 @@ button {
 }
 .container {
   margin-top: 20px;
+  width: 50%;
 }
 </style>
