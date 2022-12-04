@@ -73,6 +73,7 @@ export default {
               username.value = "";
               password.value = "";
               alert("登录成功");
+              router.push({ name: "home" });
             },
           });
         },
